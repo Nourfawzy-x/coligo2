@@ -1,13 +1,10 @@
-const http = require("http");
-const server = http.createServer((req, res) => {
-  if (req.url == "/" && req.method == "GET") {
-    res.end("home page");
-  } else if (req.url == "/about" && req.method == "GET") {
-    res.end("about page");
-  } else {
-    res.end("404 not found");
-  }
-});
-server.listen(3000, () => {
-  console.log("server is running...");
-});
+import express from "express";
+import { dbConnection } from "./dataBases/dbConnection.js";
+import userRouter from "./src/modules/users/user.router.js";
+const app = express();
+const port = 3000;
+dbConnection();
+app.use(express.json());
+app.use("/users", userRouter);
+app.get("/", (req, res) => res.send("Hello World!"));
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
