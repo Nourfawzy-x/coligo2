@@ -1,0 +1,7 @@
+# .gitattributes
+
+# Exclude specific files from line ending normalization
+server/node_modules/@mongodb-js/saslprep/* -text
+server/node_modules/@types/* -text
+server/node_modules/abbrev/* -text
+
