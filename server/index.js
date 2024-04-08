@@ -7,10 +7,11 @@ import cors from "cors";
 const app = express();
 const port = 3000;
 dbConnection();
+
 app.use(express.json());
-app.use("/users", userRouter);
+app.use("/users", cors(), userRouter);
 app.use("/quizzes", quizRouter);
 app.use(cors());
 
-app.get("/", (req, res) => res.send("Hello World!"));
+app.get("/", cors(), (req, res) => res.send("Hello World!"));
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
